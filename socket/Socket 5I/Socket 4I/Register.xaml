@@ -1,0 +1,16 @@
+﻿<Window x:Class="Socket_4I.Register"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Socket_4I"
+        mc:Ignorable="d"
+        Title="Register" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="lblRegister" Content="AGGIUNGI ACCOUNT" HorizontalAlignment="Left" Height="86" Margin="156,10,0,0" VerticalAlignment="Top" Width="416" FontSize="36" FontWeight="Bold" Foreground="#FF15A200"/>
+        <TextBox x:Name="txtNome" HorizontalAlignment="Left" Height="48" Margin="129,115,0,0" TextWrapping="Wrap" Text="NOME" VerticalAlignment="Top" Width="443" FontSize="16" Foreground="#FF15A200" GotFocus="txtNome_GotFocus"/>
+        <TextBox x:Name="txtPorta" HorizontalAlignment="Left" Height="48" Margin="129,232,0,0" TextWrapping="Wrap" Text="PORTA" VerticalAlignment="Top" Width="443" FontSize="16" Foreground="#FF15A200" GotFocus="txtPorta_GotFocus"/>
+        <Button x:Name="btnRegistrati" Content="AGGIUNGI" HorizontalAlignment="Left" Height="57" Margin="297,334,0,0" VerticalAlignment="Top" Width="188" Click="btnRegistrati_Click" Background="#FF15A200" Foreground="White"/>
+
+    </Grid>
+</Window>

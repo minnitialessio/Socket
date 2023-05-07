@@ -1,0 +1,29 @@
+﻿<Window x:Class="Socket_4I.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Socket_4I"
+        mc:Ignorable="d"
+        Title="Rubrica" Height="450" Width="825">
+    <Grid Margin="0,0,0,-154">
+        <ListBox x:Name="lstRubrica" HorizontalAlignment="Left" Height="286" Margin="26,61,0,0" VerticalAlignment="Top" Width="187" SelectionChanged="lstRubrica_SelectionChanged" Foreground="#FF15A200"/>
+        <TextBox x:Name="txtTo" HorizontalAlignment="Left" Height="28" Margin="240,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="254" Text="MESSAGGIO" GotFocus="txtTo_GotFocus" Foreground="#FF15A200"/>
+        <Label Content="RUBRICA" HorizontalAlignment="Left" Height="38" Margin="197,0,0,0" VerticalAlignment="Top" Width="118" FontSize="22" FontWeight="Bold" Foreground="#FF15A200"/>
+        <GroupBox Header="BROADCAST" HorizontalAlignment="Left" Height="189" Margin="624,151,0,0" VerticalAlignment="Top" Width="161" Foreground="#FF15A200">
+            <TextBox x:Name="txtMessaggio" HorizontalAlignment="Center" Height="138" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Text="MESSAGGIO" GotFocus="txtMessaggio_GotFocus" RenderTransformOrigin="0.508,0.609" Foreground="#FF15A200"/>
+
+        </GroupBox>
+        <GroupBox Header="" HorizontalAlignment="Left" Height="102" Margin="624,328,0,0" VerticalAlignment="Top" Width="161">
+            <Button x:Name="btnInviaBroadcast" Content="▶" HorizontalAlignment="Left" Margin="29,26,0,0" VerticalAlignment="Top" Width="82" Click="btnInviaBroadcast_Click" Height="36" Background="#FF15A200" Foreground="White"/>
+        </GroupBox>
+        <Label Content="CHAT" HorizontalAlignment="Left" Height="31" Margin="367,30,0,0" VerticalAlignment="Top" Width="48" FontWeight="Bold" Foreground="#FF15A200"/>
+        <ListBox x:Name="lstMessaggi" HorizontalAlignment="Left" Height="249" Margin="240,61,0,0" VerticalAlignment="Top" Width="323" Foreground="#FF15A200"/>
+        <Button x:Name="btnInvio" Content="▶" HorizontalAlignment="Left" Height="28" Margin="499,319,0,0" VerticalAlignment="Top" Width="30" Click="btnInvio_Click" Background="#FF15A200" Foreground="White"/>
+        <Button x:Name="btnAllega" Content="📎" HorizontalAlignment="Left" Height="28" Margin="534,319,0,0" VerticalAlignment="Top" Width="30" Click="btnAllega_Click" Foreground="White" Background="#FF15A200"/>
+        <Label Content="NOTIFICHE" HorizontalAlignment="Left" Height="30" Margin="656,4,0,0" VerticalAlignment="Top" Width="85" FontWeight="Bold" Foreground="#FF15A200"/>
+        <ListBox x:Name="lstNotifiche" HorizontalAlignment="Left" Height="116" Margin="577,30,0,0" VerticalAlignment="Top" Width="238" Foreground="#FF15A200"/>
+        <TextBlock x:Name="txtRegister" HorizontalAlignment="Left" Margin="50,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="42" Width="139" FontSize="16" Foreground="#FF0058FF" TextDecorations="Underline" Cursor="Hand" MouseDown="txtRegister_MouseDown"><Run Language="it-it" Text="aggiungi contatto"/></TextBlock>
+
+    </Grid>
+</Window>
