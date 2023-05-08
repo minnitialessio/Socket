@@ -34,8 +34,6 @@ namespace Socket_4I
     /// </summary>
     public partial class MainWindow : Window
     {
-        //METTERE COMMENTI
-        
         Rubrica rubrica; 
         Socket socket = null;
         //DispatcherTimer dTimer = null;
@@ -56,15 +54,13 @@ namespace Socket_4I
             login.ShowDialog();
             Sender = login.Utente;
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp); //creo la socket col protocollo udp
-
             
             IPAddress local_address = IPAddress.Any; //imposto l'ip address
             IPEndPoint local_endpoint = new IPEndPoint(local_address, Sender.Porta); //impsoto l'endpoint con l'ip address e la porta del sender
 
             socket.Bind(local_endpoint); //con il bind associo il local endpoint (caratterizzato dalla coppia ip e porta) alla socket
 
-            //socket.Blocking = false;
-            //socket.EnableBroadcast = true;
+            socket.EnableBroadcast = true;
 
             Task.Run(RiceviMessaggio); //gestisco la ricezione dei messaggi con le task
             //dTimer = new DispatcherTimer();
@@ -98,7 +94,6 @@ namespace Socket_4I
         {
             while (true)
             {
-                
                     int nBytes;
                     //ricezione dei caratteri in attesa
                     byte[] buffer = new byte[60000];
@@ -108,7 +103,6 @@ namespace Socket_4I
                     nBytes = socket.ReceiveFrom(buffer, ref remoreEndPoint);//restituisco il numero di byte letti correttamente e acquisisco l'endpoint host remoto da cui sono stati inviati i dati
 
                     int from = ((IPEndPoint)remoreEndPoint).Port; //prendo la porta del remote endpoint
-
 
                     string messaggio = Encoding.UTF8.GetString(buffer, 0, nBytes); //trasformo i bite ricevuti dalla trasmissione in stringa
 
@@ -134,9 +128,7 @@ namespace Socket_4I
                                 lstMessaggi.Dispatcher.Invoke(() => lstMessaggi.Items.Add(listBoxItem));
                                 Messaggio m = new Messaggio(messaggio, Receiver); //salvo il messaggio
                                 Receiver.Chat.Add(m);
-                            }
-
-                            );
+                            } );
                         }
                         else
                         { //se non è un'immagine salvo il messaggio normalmente
@@ -173,8 +165,6 @@ namespace Socket_4I
                             Aggiorna(); //nella rubrica ci aggiungo un contatto senza nome
                         }
                     }
-                
-
             }
             return Task.CompletedTask;
         }
@@ -210,22 +200,14 @@ namespace Socket_4I
 
         private void btnInviaBroadcast_Click(object sender, RoutedEventArgs e) //invio i messaggi via broadcast
         {
-            string hostName = Dns.GetHostName(); //prendo l'host name
-            IPAddress myIP = Dns.GetHostByName(hostName).AddressList[0]; //prendo l'ip del pc dall'host name
-
-            byte[] messaggio = Encoding.UTF8.GetBytes(txtMessaggio.Text); //trasformo il messaggio da string ad array di byte usando UTF8
-
             foreach (Persona p in rubrica.Persone) //mando il messaggio a tutti i contatti della rubrica
             {
                 if(p != Sender) //tranne al mittente
                 {
-                    IPEndPoint remote_endpoint = new IPEndPoint(myIP, p.Porta); //indico il remote endpoint
-                    socket.SendTo(messaggio, remote_endpoint); //mando il messaggio
-                    Messaggio m = new Messaggio(txtMessaggio.Text, Sender); //salvo il messaggio nella chat
-                    p.Chat.Add(m);
-                    
+                    Invio(p,txtMessaggio.Text);
                 }
             } 
+            
             AggiornaChat(); //aggiorno la chat
         }
 
@@ -263,9 +245,7 @@ namespace Socket_4I
                                 listBoxItem.Content = wpfImage;
                                 listBoxItem.HorizontalContentAlignment = HorizontalAlignment.Left; //allineo a sinistra
                                 lstMessaggi.Dispatcher.Invoke(() => lstMessaggi.Items.Add(listBoxItem)); //aggiungo il messaggio nel listbox
-                            } 
-
-                            );
+                            } );
                         }
                         else
                         {
@@ -288,9 +268,7 @@ namespace Socket_4I
                                 listBoxItem.Content = wpfImage;
                                 listBoxItem.HorizontalContentAlignment = HorizontalAlignment.Right; //allineo a destra perchè è un mio messaggio
                                 lstMessaggi.Dispatcher.Invoke(() => lstMessaggi.Items.Add(listBoxItem)); //aggiungo il messaggio nel listbox
-                            }
-
-                            );
+                            });
 
                         }
                         else
@@ -311,28 +289,40 @@ namespace Socket_4I
         {
             try
             {
-                if(Receiver == null) //controllo che il receiver non sia null
+                if (Receiver == null) //controllo che il receiver non sia null
                 {
                     throw new Exception("SELEZIONA UN UTENTE A CUI MANDARE IL MESSAGGIO");
                 }
 
                 Receiver = lstRubrica.SelectedItem as Persona; //prendo il receiver dal contatto selezionato
+                string mess = txtTo.Text;
+                Invio(Receiver,mess);
+                AggiornaChat();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void Invio(Persona receiver, string mess)
+        {
+            try
+            {
                 string hostName = Dns.GetHostName(); //prendo l'host name
                 IPAddress myIP = Dns.GetHostByName(hostName).AddressList[0]; //prendo l'ip dall'host name
 
-                IPEndPoint remote_endpoint = new IPEndPoint(myIP, Receiver.Porta); //prendo il remote endpoint dall'ip e dalla porta del contatto selezionato
+                IPEndPoint remote_endpoint = new IPEndPoint(myIP, receiver.Porta); //prendo il remote endpoint dall'ip e dalla porta del contatto selezionato
 
-                byte[] messaggio = Encoding.UTF8.GetBytes(txtTo.Text); //trasformo la stringa in un array di byte
+                byte[] messaggio = Encoding.UTF8.GetBytes(mess); //trasformo la stringa in un array di byte
 
                 socket.SendTo(messaggio, remote_endpoint); //mando il messaggio
 
-                ListBoxItem listBoxItem = new ListBoxItem(); //allineo il mio messaggio a destra nel listbox
-                listBoxItem.Content = Sender.Nome + " : " + txtTo.Text;
-                listBoxItem.HorizontalContentAlignment = HorizontalAlignment.Right;
-                lstMessaggi.Items.Add(listBoxItem); //aggiungo il messaggio nel listbox
-                Messaggio m = new Messaggio(txtTo.Text, Sender); //salvo il messaggio nello storico
-                Receiver.Chat.Add(m);
-                
+                //ListBoxItem listBoxItem = new ListBoxItem(); //allineo il mio messaggio a destra nel listbox
+                //listBoxItem.Content = Sender.Nome + " : " + mess;
+                //listBoxItem.HorizontalContentAlignment = HorizontalAlignment.Right;
+                //lstMessaggi.Items.Add(listBoxItem); //aggiungo il messaggio nel listbox
+                Messaggio m = new Messaggio(mess, Sender); //salvo il messaggio nello storico
+                receiver.Chat.Add(m);
             }
             catch(Exception ex)
             {
