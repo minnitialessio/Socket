@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Socket_4I
 {
-    public class Persona
+    public class Persona //mi salvo la classe persona per salvare tutti i contatti
     {
+        //per ogni contatto mi salvo il nome, la porta e lo storico della chat
         private string _nome;
         private int _porta;
 

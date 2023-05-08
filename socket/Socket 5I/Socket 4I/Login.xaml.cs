@@ -21,14 +21,14 @@ namespace Socket_4I
     {
         Rubrica rubricaLogin;
         public Persona Utente { set; get; }
-        public Login(Rubrica rubrica)
+        public Login(Rubrica rubrica) //login
         {
             InitializeComponent();
             rubricaLogin = rubrica;
             Aggiorna();
         }
 
-        private void Aggiorna()
+        private void Aggiorna() //aggiorno gli utenti selezionabili
         {
             lstRubrica.ItemsSource = null;
             lstRubrica.ItemsSource = rubricaLogin.Persone;
@@ -39,7 +39,7 @@ namespace Socket_4I
             {
                 if(lstRubrica.SelectedItem != null)
                 {
-                    Utente = lstRubrica.SelectedItem as Persona;
+                    Utente = lstRubrica.SelectedItem as Persona; //prendo l'utente selezionato come sender
                     Close();
                 }
                 else
@@ -53,7 +53,7 @@ namespace Socket_4I
             }
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) //non posso chiudere la finestra se non faccio prima il login
         {
             if (Utente == null)
             {
@@ -64,14 +64,14 @@ namespace Socket_4I
             }
         }
 
-        private void txtRegister_MouseDown(object sender, MouseButtonEventArgs e)
+        private void txtRegister_MouseDown(object sender, MouseButtonEventArgs e) //per il register
         {
             try
             {
                 Register register = new Register();
                 register.ShowDialog();
 
-                foreach (Persona p in rubricaLogin.Persone)
+                foreach (Persona p in rubricaLogin.Persone) //controllo che non si sia registrato con una porta già in uso
                 {
                     if (register.Persona.Porta == p.Porta)
                     {
@@ -79,7 +79,7 @@ namespace Socket_4I
                     }
                 }
 
-                rubricaLogin.Persone.Add(register.Persona);
+                rubricaLogin.Persone.Add(register.Persona); //aggiorno la rubrica
                 Aggiorna();
             }catch(Exception ex)
             {

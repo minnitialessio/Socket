@@ -20,7 +20,7 @@ namespace Socket_4I
     public partial class Register : Window
     {
         public Persona Persona { set; get; }
-        public Register()
+        public Register() //usato per registrarsi o per aggiungere un contatto
         {
             InitializeComponent();
         }
@@ -29,7 +29,7 @@ namespace Socket_4I
         {
             try
             {
-                Persona = new Persona(txtNome.Text, int.Parse(txtPorta.Text));
+                Persona = new Persona(txtNome.Text, int.Parse(txtPorta.Text));  //salvo la persona e poi chiudo la finestra
                 Close();
             }catch(Exception ex)
             {
