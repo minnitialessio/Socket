@@ -25,6 +25,7 @@ using Microsoft.Win32;
 using System.ComponentModel;
 using System.Drawing.Imaging;
 using System.Text.RegularExpressions;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Socket_4I
 {
@@ -411,26 +412,35 @@ namespace Socket_4I
                 Register register = new Register(); //creo un nuovo contatto
                 register.ShowDialog();
 
-                foreach (Persona p in rubrica.Persone) //guardo che il nuovo utente non corrisponda ad un altro contatto già salvato
+                if (register.Persona  != null)
                 {
-                    if (register.Persona.Porta == p.Porta)
+                    foreach (Persona p in rubrica.Persone) //guardo che il nuovo utente non corrisponda ad un altro contatto già salvato
                     {
-                        if(p.Nome == "unknown") //se era riferito ad utente salvato come unknown allora lo cambio
+                        if (register.Persona.Porta == p.Porta)
                         {
-                            register.Persona.Chat = p.Chat;
-                            rubrica.Persone.Remove(p);
-                            break;
-                        }
-                        else
-                        {
-                            throw new Exception("IMPOSSIBILE AGGIUNGERE UN CONTATTO CON UNA PORTA GIA' IN USO");
-                        }
-                        
-                    }
-                }
+                            if (p.Nome == "unknown") //se era riferito ad utente salvato come unknown allora lo cambio
+                            {
+                                register.Persona.Chat = p.Chat;
+                                rubrica.Persone.Remove(p);
+                                break;
+                            }
+                            else
+                            {
+                                throw new Exception("IMPOSSIBILE AGGIUNGERE UN CONTATTO CON UNA PORTA GIA' IN USO");
+                            }
 
-                rubrica.Persone.Add(register.Persona); //aggiorno la rubrica
-                Aggiorna();
+                        }
+                    }
+                    
+
+                    rubrica.Persone.Add(register.Persona); //aggiorno la rubrica
+                    Aggiorna();
+                }
+                else
+                {
+                    throw new Exception("il contatto è null");
+                }
+                
             }
             catch (Exception ex)
             {
