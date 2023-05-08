@@ -11,4 +11,4 @@ implementazioni:
 - salvataggio storico delle chat
 - inviare foto purchè rientrino in una certa dimensione
 
-il broadcast funziona solo se tutti i contatti sono in ascolto
+il broadcast richiede che tutti i contatti siano in ascolto
