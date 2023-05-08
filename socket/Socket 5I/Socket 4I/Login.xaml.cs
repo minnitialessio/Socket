@@ -68,9 +68,14 @@ namespace Socket_4I
         {
             try
             {
+
                 Register register = new Register();
                 register.ShowDialog();
 
+                if(register.Persona == null)
+                {
+                    throw new Exception("nessun utente aggiunto");
+                }
                 foreach (Persona p in rubricaLogin.Persone) //controllo che non si sia registrato con una porta già in uso
                 {
                     if (register.Persona.Porta == p.Porta)

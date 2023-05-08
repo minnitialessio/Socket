@@ -6,16 +6,19 @@
         xmlns:local="clr-namespace:Socket_4I"
         mc:Ignorable="d"
         Title="Login" Height="543.396" Width="800" Closing="Window_Closing">
-    <Grid>
+    <Grid Background="#FF3D515D">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="223*"/>
-            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="116*"/>
+            <ColumnDefinition Width="356*"/>
+            <ColumnDefinition Width="199*"/>
+            <ColumnDefinition Width="124*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="lblLogin" Content="LOGIN" HorizontalAlignment="Left" Height="86" Margin="317,10,0,0" VerticalAlignment="Top" Width="129" FontSize="36" FontWeight="Bold" Foreground="#FF15A200"/>
-        <ListBox x:Name="lstRubrica" HorizontalAlignment="Left" Height="180" Margin="90,138,0,0" VerticalAlignment="Top" Width="588" Grid.ColumnSpan="2" Foreground="#FF15A200"/>
-        <Label Content="INSERISCI CHI SEI" HorizontalAlignment="Left" Height="55" Margin="90,83,0,0" VerticalAlignment="Top" Width="457" FontSize="22" FontWeight="Bold" Foreground="#FF15A200"/>
-        <Button x:Name="btnLogin" Content="LOGIN" HorizontalAlignment="Left" Height="53" Margin="290,359,0,0" VerticalAlignment="Top" Width="187" Click="btnLogin_Click" FontWeight="Bold" Background="#FF15A200" Foreground="White"/>
-        <TextBlock x:Name="txtRegister" HorizontalAlignment="Left" Margin="290,470,0,0" TextWrapping="Wrap" Text="Nuovo utente? registrati" VerticalAlignment="Top" Height="42" Width="187" FontSize="16" Foreground="#FF0058FF" TextDecorations="Underline" Cursor="Hand" MouseDown="txtRegister_MouseDown"/>
+        <Label x:Name="lblLogin" Content="LOGIN" HorizontalAlignment="Left" Height="86" Margin="196,10,0,0" VerticalAlignment="Top" Width="129" FontSize="36" FontWeight="Bold" Foreground="#FF15A200" Grid.Column="2"/>
+        <ListBox x:Name="lstRubrica" HorizontalAlignment="Left" Height="180" Margin="85,138,0,0" VerticalAlignment="Top" Width="588" Grid.ColumnSpan="4" Foreground="#FF15A200" Grid.Column="1" Background="White"/>
+        <Label Content="INSERISCI CHI SEI" HorizontalAlignment="Left" Height="55" Margin="85,83,0,0" VerticalAlignment="Top" Width="457" FontSize="22" FontWeight="Bold" Foreground="#FF15A200" Grid.ColumnSpan="3" Grid.Column="1"/>
+        <Button x:Name="btnLogin" Content="LOGIN" HorizontalAlignment="Left" Height="53" Margin="169,359,0,0" VerticalAlignment="Top" Width="187" Click="btnLogin_Click" FontWeight="Bold" Background="#FF15A200" Foreground="White" Grid.Column="2"/>
+        <TextBlock x:Name="txtRegister" HorizontalAlignment="Left" Margin="169,470,0,0" TextWrapping="Wrap" Text="Nuovo utente? registrati" VerticalAlignment="Top" Height="42" Width="187" FontSize="16" Foreground="#FF15A200" TextDecorations="Underline" Cursor="Hand" MouseDown="txtRegister_MouseDown" Grid.Column="2"/>
 
     </Grid>
 </Window>

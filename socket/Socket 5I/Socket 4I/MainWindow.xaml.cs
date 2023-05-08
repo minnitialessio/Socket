@@ -98,8 +98,7 @@ namespace Socket_4I
         {
             while (true)
             {
-                try
-                {
+                
                     int nBytes;
                     //ricezione dei caratteri in attesa
                     byte[] buffer = new byte[60000];
@@ -174,10 +173,7 @@ namespace Socket_4I
                             Aggiorna(); //nella rubrica ci aggiungo un contatto senza nome
                         }
                     }
-                }catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                
 
             }
             return Task.CompletedTask;
@@ -438,7 +434,7 @@ namespace Socket_4I
                 }
                 else
                 {
-                    throw new Exception("il contatto è null");
+                    throw new Exception("nessun utente aggiunto");
                 }
                 
             }

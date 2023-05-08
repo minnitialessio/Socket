@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:Socket_4I"
         mc:Ignorable="d"
         Title="Rubrica" Height="450" Width="825">
-    <Grid Margin="0,0,0,-154">
+    <Grid Margin="0,0,0,-16" Background="#FF3D515D">
         <ListBox x:Name="lstRubrica" HorizontalAlignment="Left" Height="286" Margin="26,61,0,0" VerticalAlignment="Top" Width="187" SelectionChanged="lstRubrica_SelectionChanged" Foreground="#FF15A200"/>
         <TextBox x:Name="txtTo" HorizontalAlignment="Left" Height="28" Margin="240,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="254" Text="MESSAGGIO" GotFocus="txtTo_GotFocus" Foreground="#FF15A200"/>
-        <Label Content="RUBRICA" HorizontalAlignment="Left" Height="38" Margin="197,0,0,0" VerticalAlignment="Top" Width="118" FontSize="22" FontWeight="Bold" Foreground="#FF15A200"/>
+        <Label Content="RUBRICA" HorizontalAlignment="Left" Height="38" Margin="26,4,0,0" VerticalAlignment="Top" Width="118" FontSize="22" FontWeight="Bold" Foreground="#FF15A200"/>
         <GroupBox Header="BROADCAST" HorizontalAlignment="Left" Height="189" Margin="624,151,0,0" VerticalAlignment="Top" Width="161" Foreground="#FF15A200">
             <TextBox x:Name="txtMessaggio" HorizontalAlignment="Center" Height="138" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Text="MESSAGGIO" GotFocus="txtMessaggio_GotFocus" RenderTransformOrigin="0.508,0.609" Foreground="#FF15A200"/>
 
@@ -23,7 +23,7 @@
         <Button x:Name="btnAllega" Content="📎" HorizontalAlignment="Left" Height="28" Margin="534,319,0,0" VerticalAlignment="Top" Width="30" Click="btnAllega_Click" Foreground="White" Background="#FF15A200"/>
         <Label Content="NOTIFICHE" HorizontalAlignment="Left" Height="30" Margin="656,4,0,0" VerticalAlignment="Top" Width="85" FontWeight="Bold" Foreground="#FF15A200"/>
         <ListBox x:Name="lstNotifiche" HorizontalAlignment="Left" Height="116" Margin="577,30,0,0" VerticalAlignment="Top" Width="238" Foreground="#FF15A200"/>
-        <TextBlock x:Name="txtRegister" HorizontalAlignment="Left" Margin="50,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="42" Width="139" FontSize="16" Foreground="#FF0058FF" TextDecorations="Underline" Cursor="Hand" MouseDown="txtRegister_MouseDown"><Run Language="it-it" Text="aggiungi contatto"/></TextBlock>
+        <TextBlock x:Name="txtRegister" HorizontalAlignment="Left" Margin="50,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="42" Width="139" FontSize="16" Foreground="#FF15A200" TextDecorations="Underline" Cursor="Hand" MouseDown="txtRegister_MouseDown"><Run Language="it-it" Text="aggiungi contatto"/></TextBlock>
 
     </Grid>
 </Window>
